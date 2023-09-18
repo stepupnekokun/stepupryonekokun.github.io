@@ -1,38 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+
 <head>
-    <!-- JavaScriptコードを埋め込む -->
-    <script>
-        const sample = document.getElementById("sample");
-        const text = document.getElementById("text")
-
-        //ダイアログでファイルが選択された時
-        sample.addEventListener("change", function (event) {
-
-        const file = event.target.files;
-
-        //FileReaderの作成
-        const reader = new FileReader();
-        //テキスト形式で読み込む
-        reader.readAsText(file[0]);
-
-        //読込終了後の処理
-        reader.onload = function () {
-            //テキストエリアに表示する
-            text.value = reader.result;
-        }
-        });
-
-    </script>
-    <title>テキストファイルのダウンロード</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
 
 </head>
+
 <body>
-
-
     
-    <h1>指定したテキストファイルの内容表示</h1>
-    <pre id="text-display"></pre>
-    <object data="./txt/output.txt" type="text/plain"></object>
+    <object data="txt/output.txt" type="text/plain"></object>
+    
 </body>
+
 </html>
