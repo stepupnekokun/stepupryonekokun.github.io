@@ -1,2 +1,42 @@
 > onenote
 Ctr+1 or Shift+Alt+D 日付
+
+> ps1
+# カレントディレクトリを取得する
+$Clocation = Get-Location
+$DateTime = Get-Date
+# Write-Host "$Clocation$($DateTime.ToString("_yyyy_MM_dd_HH_mm_ss"))"
+
+# exit 0
+
+# フォルダを作成するディレクトリのパス
+$folderPath = "$Clocation\mkdir$($DateTime.ToString("_yyyy_MM_dd_HH_mm_ss"))"
+Write-Host "$folderPath"
+# exit 0
+# フォルダを作成
+# New-Item -ItemType Directory -Force -Path $folderPath
+Write-Host Test-Path $folderPath -PathType Containe
+exit 0
+Write-Host exit_
+# フォルダが作成されたことを確認する出力
+if (Test-Path $folderPath -PathType Container) {
+    Write-Host "フォルダ $folderPath が正常に作成されました。"
+} else {
+    Write-Host "フォルダの作成中にエラーが発生しました。"
+}
+
+# `Test-Path`コマンドレットは、指定したパスが存在するかどうかを確認するために使用されます。
+# `-PathType`パラメータを使用して、指定したパスがファイルかディレクトリ（フォルダ）かを確認できます。
+
+# 例えば、次のコード行を考えてみましょう：
+
+# ```powershell
+# Test-Path $folderPath -PathType Container
+# ```
+
+# このコードは、`$folderPath`に指定されたパスがディレクトリ（フォルダ）であるかどうかを確認します。
+# 具体的には、指定されたパスがディレクトリであれば `True` を返し、それ以外の場合は `False` を返します。
+
+# このようにして、PowerShellスクリプト内でフォルダが存在するかどうかを確認し、
+# 適切なアクションを実行する条件を設定できます。
+# たとえば、フォルダが存在しない場合にフォルダを作成するなどのロジックを実装するのに役立ちます。
