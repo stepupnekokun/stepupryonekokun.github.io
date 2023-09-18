@@ -1,1 +1,2 @@
-テスト
+> onenote
+Ctr+1 or Shift+Alt+D 日付
