@@ -50,8 +50,8 @@ Param(
 ) 
 Write-Host 
 Write-Host "---------------------------------------"
-Write-Host "蟇ｾ雎｡繝代せ�ｼ�"$Path 
-Write-Host "豺ｱ縺包ｼ�"$Depth
+Write-Host "対象パス："$Path 
+Write-Host "深さ："$Depth
 Write-Host "---------------------------------------"
 $Output =""
 function GetAclAndChildDirRoot($RootDir){
@@ -88,5 +88,4 @@ function GetAclAndChildDir($CurrentTarget,$i){
 GetAclAndChildDirRoot $Path
 Write-Host "---------------------------------------"
 Read-Host 
-
 
