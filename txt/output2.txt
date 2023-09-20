@@ -1,0 +1,50 @@
+$outPath = "C:\Users\tstep\Desktop\tmp\test_taskscheduler\Agent Activation Runtime"
+
+if (-not (Test-Path $outPath -PathType Container)){
+	# 譁ｰ隕丈ｽ懈��
+	New-Item -ItemType Directory -Path $outPath
+}
+
+
+$path1 = 'C:\Windows\System32\Tasks';
+
+$list = Get-ChildItem $path1 -Depth 5 -Recurse ;
+
+foreach($str in $list){
+
+    if($str.PSIsContainer){
+        Write-Host ('フォルダ : ' + $str.Name);
+    }
+
+    # $list_ = Get-ChildItem $path1/$str -directory;
+
+    # foreach($str_ in $list_){
+    #     Write-Host ('   子フォルダ : ' + $str_.Name);
+
+    #     $list_a = Get-ChildItem $path1/$str/$str_ -directory;
+    #     foreach($str_a in $list_a){
+    #         Write-Host ('       孫フォルダ : ' + $str_a.Name);
+    #     }
+
+    # }
+
+    
+}
+
+exit 0
+
+$outFileName = "{0}.xml"
+$outtask = "\Agent Activation Runtime"
+
+$sch = New-Object -ComObject("Schedule.Service")
+$sch.Connect("localhost")
+
+$tasks = $sch.GetFolder("$outtask").GetTasks(0)
+$outfile_temp = Join-Path $outPath $outFileName 
+
+$tasks | %{
+$xml = $_.xml
+$task_name = $_.Name
+$outfile = $outfile_temp -f $task_name
+$xml | Out-File $outfile
+} 
